@@ -9,7 +9,8 @@ public class Server {
 
 	// 实现Server构造器，使用Executors类初始化ThreadPoolExecutor对象。
 	public Server() {
-		executor = (ThreadPoolExecutor) Executors.newCachedThreadPool();
+		// executor = (ThreadPoolExecutor) Executors.newCachedThreadPool();
+		executor = (ThreadPoolExecutor) Executors.newFixedThreadPool(5);
 	}
 
 	// 实现executeTask()方法，接收Task对象作为参数并将其提交到执行者。首先，写入一条信息到控制台，表明有一个新的任务到达。
@@ -21,6 +22,9 @@ public class Server {
 		System.out.printf("Server: Pool Size: %d\n", executor.getPoolSize());
 		System.out.printf("Server: Active Count: %d\n", executor.getActiveCount());
 		System.out.printf("Server: Completed Tasks: %d\n", executor.getCompletedTaskCount());
+
+		System.out.printf("Server: Task Count: %d\n", executor.getTaskCount());
+
 	}
 
 	// 实现endServer()方法，在这个方法中，调用执行者的shutdown()方法来结束任务执行。
